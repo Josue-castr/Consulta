@@ -322,8 +322,8 @@ class C_seguridad extends CI_Controller {
     	$pag = $this->input->post('pag');
     	$where = '';
     	$palabra = trim($this->input->post('fTitulo'));
-    	if($this->input->post('fEstatus') > 0) $where['u.iEstatus'] = $this->input->post('fEstatus');
-    	if($this->input->post('fRol') > 0) $where['u.iIdRol'] = $this->input->post('fRol');
+    	if($this->input->post('fEstatus') > 0) $where= 'u."iEstatus"=' .$this->input->post('fEstatus');
+    	if($this->input->post('fRol') > 0) $where = 'u."iIdRol"=' .$this->input->post('fRol');
 
     	echo $this->listado_usuarios($where,$palabra,$pag);
     }

@@ -105,7 +105,8 @@ class M_seguridad extends CI_Model {
 		if($palabra != '')
 		{
 			//$this->db->where("CONCACT( u.vNombre,' ',u.vApellidoPaterno,' ',u.vApellidoMaterno) LIKE '%$palabra%'");
-			$this->db->like("u.vNombre",$palabra);
+			//$this->db->like("u.vNombre",$palabra);
+			$this->db->where('u."vNombre" ILIKE \'%'.$palabra.'%\'');
 		}
 
 		if(!empty($where)) $this->db->where($where);
