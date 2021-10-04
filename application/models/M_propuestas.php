@@ -138,7 +138,7 @@ class M_propuestas extends CI_Model {
 		$this->db->select('(select count(c2."iIdComentario") from "Comentario" c2 where c2."iIdReplicaDe" = c."iIdComentario" and c2."iEstatus" > 1) as respuestas, cl.iLike,c.iIdComentario,c.vComentario,c.iIdPropuesta,c.iIdReplicaDe,c.dFecha,u.iIdUsuario,u.vNombre,u.vApellidoPaterno,u.vApellidoMaterno');
 		$this->db->from('Comentario c');
 		$this->db->join('Usuario u','c.iIdUsuario = u.iIdUsuario','INNER');
-		$this->db->join('ComentarioLike cl','c.iIdComentario = cl.iIdCometario and cl."iIdUsuario" = '.$iIdUsuario,'LEFT');
+		$this->db->join('ComentarioLike cl','c.iIdComentario = cl.iIdComentario and cl."iIdUsuario" = '.$iIdUsuario,'LEFT');
 		$this->db->where('c.iIdPropuesta',$iIdPropuesta);
 		$this->db->where('c.iEstatus',2);
 		$this->db->where('c.iIdReplicaDe',0);
@@ -276,10 +276,10 @@ class M_propuestas extends CI_Model {
 
 	public function verifica_like($iIdUsuario,$iIdComentario)
 	{
-		$this->db->select('iIdCometario');
+		$this->db->select('iIdComentario');
 		$this->db->from('ComentarioLike');
 		$this->db->where('iIdUsuario',$iIdUsuario);
-		$this->db->where('iIdCometario',$iIdComentario);
+		$this->db->where('iIdComentario',$iIdComentario);
 
 		$query = $this->db->get();
 		if($query!=false) return $query->num_rows();
@@ -292,7 +292,7 @@ class M_propuestas extends CI_Model {
 		if($op=='update') 
 		{
 			$this->db->where('iIdUsuario',$iIdUsuario);
-			$this->db->where('iIdCometario',$iIdComentario);
+			$this->db->where('iIdComentario',$iIdComentario);
 			$query = $this->db->update('ComentarioLike',$datos);
 		}
 		elseif($op=='insert') 
@@ -315,7 +315,7 @@ class M_propuestas extends CI_Model {
 		$this->db->select('(select count(c2."iIdComentario") from "Comentario" c2 where c2."iIdReplicaDe" = c."iIdComentario" and c2."iEstatus" > 1) as respuestas, cl.iLike,c.iIdComentario,c.vComentario,c.iIdPropuesta,c.iIdReplicaDe,c.dFecha,u.iIdUsuario,u.vNombre,u.vApellidoPaterno,u.vApellidoMaterno');
 		$this->db->from('Comentario c');
 		$this->db->join('Usuario u','c.iIdUsuario = u.iIdUsuario','INNER');
-		$this->db->join('ComentarioLike cl','c.iIdComentario = cl.iIdCometario and cl."iIdUsuario" = '.$iIdUsuario,'LEFT');
+		$this->db->join('ComentarioLike cl','c.iIdComentario = cl.iIdComentario and cl."iIdUsuario" = '.$iIdUsuario,'LEFT');
 		$this->db->where('c.iEstatus',2);
 		$this->db->where('c.iIdReplicaDe',$iIdComentario);
 
