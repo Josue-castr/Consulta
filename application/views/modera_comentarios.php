@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Rol</label>
+                                                <label>Estatus</label>
                                                 <select name="iEstatus" id="iEstatus" class="form-control">
                                                     <option value="">Estatus</option>
                                                     <option value="0">Eliminado</option>
