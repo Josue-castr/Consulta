@@ -299,7 +299,7 @@ class Sitio extends CI_Controller {
 		{
 			foreach ($_SESSION as $key => $value)
 			{
-				session_unset($key);
+				unset($_SESSION[$key]);
 			}
 		}
 
