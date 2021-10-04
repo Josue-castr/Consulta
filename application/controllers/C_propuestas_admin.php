@@ -35,11 +35,14 @@ class C_propuestas_admin extends CI_Controller {
     {
     	$pag = $this->input->post('pag');
     	$where = '';
+		$tipo = '';
     	$palabra = trim($this->input->post('fTitulo'));
-    	if($this->input->post('fSector') > 0) $where['s.iIdSector'] = $this->input->post('fSector');
+    	if($this->input->post('fSector') > 0) $where = 's."iIdSector"=' .$this->input->post('fSector');
     	if($this->input->post('fTema') > 0) $where['p.iIdTema'] = $this->input->post('fTema');
-    	if($this->input->post('fEstatus') !=  10) $where['p.iEstatus'] = $this->input->post('fEstatus');
-    	if($this->input->post('fRol') > 0) $where['u.iIdRol'] = $this->input->post('fRol');
+    	//Original //if($this->input->post('fEstatus') !=  10){ $where['p.iEstatus'= $this->input->post('fEstatus'); $tipo='"p.iEstatus"'; }
+		//opcion 1 //if($this->input->post('fEstatus') !=  10){ $where = '"p.iEstatus"=' .$this->input->post('fEstatus'); $tipo='"p.iEstatus"'; }
+		if($this->input->post('fEstatus') !=  10) $where = '"p.iEstatus"=' .$this->input->post('fEstatus');
+    	if($this->input->post('fRol') > 0) $where = 'u."iIdRol"=' .$this->input->post('fRol');
 
     	//echo $_SESSION['consultap'];
     	echo $this->listado_propuestas($where,$palabra,$pag);
@@ -130,6 +133,24 @@ class C_propuestas_admin extends CI_Controller {
 				break;
 		}
 
+		return $r;
+	}
+
+	function rol_propuesta($n)
+	{
+		$r='';
+		switch ($n)
+		{
+			case '1':
+				$r="Administrador";
+				break;
+			case '2':
+				$r="Público";
+				break;
+			case '3':
+				$r="Moderador";
+				break;
+		}
 		return $r;
 	}
 
@@ -625,4 +646,3 @@ class C_propuestas_admin extends CI_Controller {
 		return ($hoy >= $inicio && $hoy <= $fin) ? true:false;
 	}
 }
-?>
