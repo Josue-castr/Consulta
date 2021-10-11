@@ -122,6 +122,19 @@ class M_catalogos extends CI_Model {
 		return $query;
 	}
 
+	public function datos_tema($where='')
+	{
+		$this->db->select('iIdTema,vTema');
+		$this->db->from('Tema');
+		$this->db->where('iActivo',1);
+		
+		if($where != '') $this->db->where($where);
+
+		$query = $this->db->get();
+		
+		return $query;
+	}
+
 	public function datos_roles($where='')
 	{
 		$this->db->select('iIdRol,vRol');

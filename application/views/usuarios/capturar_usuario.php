@@ -246,6 +246,12 @@
 		    	nombre: {
 		      		required: true
 		    	},
+				apellido_paterno:{
+					required: true
+				},
+				apellido_materno:{
+					required: true
+				},
 		    	contrasenia: {
 		      		required: true
 		    	},
@@ -287,6 +293,7 @@
 		  	messages: {
 		  		nombre: "Por favor rellene este campo",
 			    apellido_paterno: "Por favor rellene este campo",
+				apellido_materno: "Por favor rellene este campo",
 			    contrasenia: "Por favor rellene este campo",
 			    contrasenia2:{
 			    	required: "Por favor rellene este campo",

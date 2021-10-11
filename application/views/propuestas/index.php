@@ -31,7 +31,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                     	<label>Tema</label>
-                                        <select name="fTema" id="fTema" class="form-control">
+                                        <select disabled="disabled" name="fTema" id="fTema" class="form-control">
                                         	<?=$op_temas; ?>
                                         </select>
                                     </div>

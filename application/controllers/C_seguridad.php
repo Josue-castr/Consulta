@@ -120,7 +120,7 @@ class C_seguridad extends CI_Controller {
     			'iRegistroCon' => 1,
     			'iIdAsentamiento' => $this->input->post('id_asentamiento'),
     			'iIdRol' => 2,	// Público general
-    			'dFechaRegistro' => date('Y-m-d H:i:s'),
+    			'dFechaRegistro' => date('d-m-Y H:i:s'),
     			'vContrasenia' => SHA1($this->input->post('contrasenia')),
     			'iEstatus' => 1
     		);
@@ -236,7 +236,7 @@ class C_seguridad extends CI_Controller {
 	    			$token = $this->generar_token();
 	    			$d_usuario['iRegistroCon'] = 1;
 	    			$d_usuario['iIdRol'] = (isset($_POST['vista_admin'])) ? $this->input->post('id_rol'):1;
-	    			$d_usuario['dFechaRegistro'] = date('Y-m-d H:i:s');	    			
+	    			$d_usuario['dFechaRegistro'] = date('d-m-Y H:i:s');	    			
 	    			$d_usuario['vContrasenia'] = SHA1($this->input->post('contrasenia'));
 	    			$d_usuario['iEstatus'] = 1;	//	Pendiente de confirmación
 	    			$d_usuario['vToken'] = $token;
