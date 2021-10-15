@@ -41,8 +41,11 @@ class C_propuestas_admin extends CI_Controller
 		//$where="";
 		$tipo = '';
 		$palabra = trim($this->input->post('fTitulo'));
-		if ($this->input->post('fSector') > 0) $where = 's."iIdSector"=' . $this->input->post('fSector');
-		if ($this->input->post('fTema') > 0) $where = 'p."iIdTema"=' . $this->input->post('fTema');
+		if ($this->input->post('fSector') > 0) $where['iIdSector']= $this->input->post('fSector');
+		if ($this->input->post('fTema') > 0) $where['p.iIdTema']= $this->input->post('fTema');
+
+		//if ($this->input->post('fSector') > 0) $where = 's."iIdSector"=' . $this->input->post('fSector');
+		//if ($this->input->post('fTema') > 0) $where = 'p."iIdTema"=' . $this->input->post('fTema');
 		if($this->input->post('fEstatus') !=  10){ $where['p.iEstatus']= $this->input->post('fEstatus');}
 		//echo "<script>alert('".$where['p.Estatus']."');</script>";
 		//opcion 1 //if($this->input->post('fEstatus') !=  10){ $where = '"p.iEstatus"=' .$this->input->post('fEstatus'); $tipo='"p.iEstatus"'; }
