@@ -268,12 +268,40 @@ class Class_options {
 
         if($query != false)
         {
-
+            
             $query = $query->result();
             foreach ($query as $e)
             {
                 $selected = ($e->iIdTema == $seleccionado) ? 'selected':'';
                 $select .= '<option value="'.$e->iIdTema.'" '.$selected.' >'.$e->vTema.'</option>';
+            }
+        }
+
+        return $select;
+    }
+
+    function options_propuesta($seleccionado="", $opcion0="",$id=0)
+    { 
+        $model = new M_catalogos();
+        $select = '';
+
+        $query = $model->devuelve_propuesta_por_sector($id);//manda a la consulta
+        //  Primera opción del selector
+        if($opcion0 != '')
+        {
+            
+            if($seleccionado == 0) $select .="<option value=\"0\" rel=\"0\" selected>$opcion0</option>";
+            else $select .="<option value=\"0\" rel=\"0\">$opcion0</option>";
+        }
+
+        if($query != false)
+        {
+            //echo "<script>alert('si entro');</script>";
+            $query = $query->result();
+            foreach ($query as $e)
+            {
+                $selected = ($e->iIdPropuesta == $seleccionado) ? 'selected':'';
+                $select .= '<option value="'.$e->iIdPropuesta.'" '.$selected.' >'.$e->vTitulo.'</option>';
             }
         }
 

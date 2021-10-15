@@ -114,11 +114,26 @@ class M_catalogos extends CI_Model {
 		$this->db->join('Sector l','l.iIdSector = a.iIdSector','INNER');
 		$this->db->where('a.iActivo',1);
 		$this->db->where('a.iIdSector',$id);
+		
+		$query = $this->db->get();
+
+		//$_SESSION['c'] = $this->db->last_query();
+		//echo "<script>alert('".$d."');</script>";
+		return $query;
+	}
+	
+	public function devuelve_propuesta_por_sector($id)
+	{
+		$this->db->select('p.iIdPropuesta,p.vTitulo');
+		$this->db->from('Propuesta p');
+		$this->db->join('Tema t', 't.iIdTema = p.iIdTema','INNER');
+		$this->db->where('p.iEstatus',3);		
+		$this->db->where('p.iIdTema',$id);
 
 		$query = $this->db->get();
 
 		//$_SESSION['c'] = $this->db->last_query();
-
+		//echo "<script>alert('".$id."');</script>";
 		return $query;
 	}
 

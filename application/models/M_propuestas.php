@@ -191,8 +191,9 @@ class M_propuestas extends CI_Model {
 		if($iIdTema>0) $this->db->where('p.iIdTema',$iIdTema);
 		if($iIdPropuesta>0) $this->db->where('c.iIdPropuesta',$iIdPropuesta);
 		$this->db->where('c.iEstatus',$iEstatus);
-
+		
 		$query = $this->db->get();
+		
 		if($query!=false) return $query->result();
 		else return false;
 	}

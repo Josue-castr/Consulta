@@ -116,7 +116,6 @@
 		Cargar('<?=base_url();?>C_propuestas_admin/capturar_propuesta','#contenidomodulo','POST',vars);
 	}
 
-
 	function Eliminar(id)
 	{
 		Swal({
@@ -145,7 +144,7 @@
     {
         var valor = $("#"+lstpadreid).val();
         var patron = /chosen-select/g;
-
+        
         var loading = new Loading({
                 discription: 'Espere...',
                 defaultApply: true
@@ -162,6 +161,7 @@
 
             if(patron.test($('#'+lsthijoid).attr('class')))
             {
+                
                 $('#'+lsthijoid).trigger("chosen:updated");
                     
             } 

@@ -150,7 +150,7 @@ class C_propuestas extends CI_Controller {
 
 	public function carga_temas()
 	{
-		$select = '<option value="">Temas</option>';
+		$select = '<option value="">Tema</option>';
 		$id_sec = $this->input->post('id', TRUE);
 		if($id_sec>0)
 		{
@@ -165,6 +165,23 @@ class C_propuestas extends CI_Controller {
 		}
 		echo $select;
 	}
+
+	function listado_dependiente()
+	{
+		$nombrelst = $this->input->post('nombrelst');
+		switch ($nombrelst)
+		{
+			case 'temas':
+				$op = new Class_options();
+				$id = $this->input->post('valor');
+				echo $op->options_temas(0,'',$id);
+				break;
+			default:
+				# code...
+				break;
+		}		
+	}
+
 
 	public function pagina_prop()
 	{
@@ -468,9 +485,16 @@ class C_propuestas extends CI_Controller {
 
 	public function modera_comentario()
 	{
+		
 		$model = new M_propuestas();
+
 		$query_sector = $model->datos_sectores();
+		$query_tema = $model->datos_temas();
+		
+		//$datos['query_tema'] = $op->options_temas(0, 'Seleccione un tema');
 		$datos['sectores'] = $query_sector;
+		$datos['temas'] = $query_tema;
+	
 		$this->load->view('modera_comentarios',$datos);
 	}
 
