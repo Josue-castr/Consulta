@@ -27,7 +27,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Sector</label>
-                                        <select class="form-control" id="iIdSector" name="iIdSector" onchange="carga_temas2('temas','iIdSector', 'iIdTema');">
+                                        <select class="form-control" id="iIdSector" name="iIdSector" onchange="carga_temas2('temas','iIdSector', 'iIdTema', 'iIdPropuesta');">
                                             <option value="0">Sector</option>
                                             <?php
                                             if ($sectores != false) {
@@ -98,7 +98,7 @@
     </div>
 </body>
 <script type="text/javascript">
-    function carga_temas2(nombrelst, lstpadreid, lsthijoid) {
+    function carga_temas2(nombrelst, lstpadreid, lsthijoid, lsthijoid2) {
         var valor = $("#" + lstpadreid).val();
         var patron = /chosen-select/g;
 
@@ -119,7 +119,10 @@
                 
             }
             else{
+                se = '<option value="0" selected="0" style="text-transform: capitalize;">'+ nombrelst + ' </option>'+ resultado;
+                $('#'+lsthijoid).append(se);
                 $('#'+lsthijoid).attr("disabled",true);
+                $('#'+lsthijoid2).attr("disabled",true);
                 //alert("entro");
             }
 
