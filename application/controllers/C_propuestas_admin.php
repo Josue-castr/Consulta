@@ -460,13 +460,13 @@ class C_propuestas_admin extends CI_Controller
 		$nombrelst = $this->input->post('nombrelst');
 
 		switch ($nombrelst) {
-			case 'temas':
+			case 'Temas':
 				//echo "<script>alert('".$nombrelst."');</script>";
 				$op = new Class_options();
 				$id = $this->input->post('valor');
 				echo $op->options_temas(0, '', $id);
 				break;
-			case 'propuesta':
+			case 'Propuesta':
 				//echo "<script>alert('".$nombrelst."');</script>";
 				$op = new Class_options();
 				$id = $this->input->post('valor');

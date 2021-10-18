@@ -27,7 +27,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Sector</label>
-                                        <select class="form-control" id="iIdSector" name="iIdSector" onchange="carga_temas2('temas','iIdSector', 'iIdTema', 'iIdPropuesta');">
+                                        <select class="form-control" id="iIdSector" name="iIdSector" onchange="carga_temas2('Temas','iIdSector', 'iIdTema', 'iIdPropuesta', 'Propuesta');">
                                             <option value="0">Sector</option>
                                             <?php
                                             if ($sectores != false) {
@@ -42,7 +42,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Tema</label>
-                                        <select class="form-control" disabled="disabled" id="iIdTema" name="iIdTema" onchange="carga_propuestas2('propuesta','iIdTema','iIdPropuesta')">
+                                        <select class="form-control" disabled="disabled" id="iIdTema" name="iIdTema" onchange="carga_propuestas2('Propuesta','iIdTema','iIdPropuesta')">
                                         <!--$("#iIdTema").empty();-->
                                         <option value="">Tema</option>
                                             <?php
@@ -98,7 +98,7 @@
     </div>
 </body>
 <script type="text/javascript">
-    function carga_temas2(nombrelst, lstpadreid, lsthijoid, lsthijoid2) {
+    function carga_temas2(nombrelst, lstpadreid, lsthijoid, lsthijoid2, nombrelst2) {
         var valor = $("#" + lstpadreid).val();
         var patron = /chosen-select/g;
 
@@ -112,16 +112,20 @@
             if(valor > 0 && valor != '')
             { // En este caso se utiliza el largo de la cadena debido a que no se recibe numero si no cadenas
                 se = '<option value="0" selected="0" style="text-transform: capitalize;">'+ nombrelst + ' </option>'+ resultado;
-                $('#'+ lsthijoid).empty();
+                $('#'+ lsthijoid).empty();                
                 $('#'+lsthijoid).append(se);
                  //alert(se);
                 $('#'+lsthijoid).attr("disabled",false);
+                $('#'+lsthijoid2).attr("disabled",false);
                 
             }
             else{
                 se = '<option value="0" selected="0" style="text-transform: capitalize;">'+ nombrelst + ' </option>'+ resultado;
                 $('#'+lsthijoid).append(se);
+                $('#'+ lsthijoid2).empty();
                 $('#'+lsthijoid).attr("disabled",true);
+                se = '<option value="0" selected="0" style="text-transform: capitalize;">'+ nombrelst2 + ' </option>'+ resultado;
+                $('#'+lsthijoid2).append(se);
                 $('#'+lsthijoid2).attr("disabled",true);
                 //alert("entro");
             }
@@ -146,18 +150,19 @@
             defaultApply: true
         });
         //alert(nombrelst + valor);
-        $.post("<?= base_url(); ?>C_propuestas_admin/listado_dependiente", {
-            nombrelst: nombrelst,
-            valor: valor
-        }, function(resultado, status) {
-            $('#'+lsthijoid+' option[value!="0"]').remove();
+        $.post("<?= base_url(); ?>C_propuestas_admin/listado_dependiente", {nombrelst: nombrelst, valor: valor}, function(resultado, status) {
+            //$('#'+lsthijoid+' option[value!="0"]').remove();
 
             if (valor > 0 && valor != '') { // En este caso se utiliza el largo de la cadena debido a que no se recibe numero si no cadenas
                 se = '<option value="0" selected="0" style="text-transform: capitalize;">'+ nombrelst + ' </option>'+ resultado;
                 $('#'+ lsthijoid).empty();
                 $('#' + lsthijoid).append(se);
                 $('#' + lsthijoid).attr("disabled", false);
-            } else $('#' + lsthijoid).attr("disabled", true);
+            } else{
+                se = '<option value="0" selected="0" style="text-transform: capitalize;">'+ nombrelst + ' </option>'+ resultado;
+                $('#'+lsthijoid).append(se);
+                $('#' + lsthijoid).attr("disabled", true);
+            }
 
             if (patron.test($('#' + lsthijoid).attr('class'))) {
                 $('#' + lsthijoid).trigger("chosen:updated");
