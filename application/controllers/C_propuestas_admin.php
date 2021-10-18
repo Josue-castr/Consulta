@@ -17,7 +17,7 @@ class C_propuestas_admin extends CI_Controller
 	{
 		/*if(isset($_SESSION[PREFIJO.'_idusuario']) && !empty($_SESSION[PREFIJO.'_idusuario']))
     	{*/
-		
+
 		$op = new Class_options();
 		$datos['op_sectores'] = $op->options_sectores(0, 'Seleccione un sector');
 		$datos['op_temas'] = $op->options_temas(0, 'Seleccione un tema');
@@ -38,22 +38,27 @@ class C_propuestas_admin extends CI_Controller
 	public function buscar_propuestas()
 	{
 		$pag = $this->input->post('pag');
-		//$where="";
+		$where = '';
 		$tipo = '';
 		$palabra = trim($this->input->post('fTitulo'));
-		if ($this->input->post('fSector') > 0) $where['iIdSector']= $this->input->post('fSector');
-		if ($this->input->post('fTema') > 0) $where['p.iIdTema']= $this->input->post('fTema');
+		/*if($this->input->post('fSector') > 0) $where['s.iIdSector'] = $this->input->post('fSector');
+    	if($this->input->post('fTema') > 0) $where['p.iIdTema'] = $this->input->post('fTema');
+    	if($this->input->post('fEstatus') !=  10) $where['p.iEstatus'] = $this->input->post('fEstatus');
+    	if($this->input->post('fRol') > 0) $where['u.iIdRol'] = $this->input->post('fRol');*/
 
-		//if ($this->input->post('fSector') > 0) $where = 's."iIdSector"=' . $this->input->post('fSector');
-		//if ($this->input->post('fTema') > 0) $where = 'p."iIdTema"=' . $this->input->post('fTema');
-		if($this->input->post('fEstatus') !=  10){ $where['p.iEstatus']= $this->input->post('fEstatus');}
-		//echo "<script>alert('".$where['p.Estatus']."');</script>";
+
+		if ($this->input->post('fSector') > 0) $where = 's."iIdSector"=' . $this->input->post('fSector');
+		if ($this->input->post('fTema') > 0) $where = 'p."iIdTema"=' . $this->input->post('fTema');
+		if ($this->input->post('fEstatus') !=  10) $where = '"p.iEstatus"=' . $this->input->post('fEstatus');
+		if ($this->input->post('fRol') > 0) $where = '"u.iIdRol"=' . $this->input->post('fRol');
+
+
 		//opcion 1 //if($this->input->post('fEstatus') !=  10){ $where = '"p.iEstatus"=' .$this->input->post('fEstatus'); $tipo='"p.iEstatus"'; }
-		//if ($this->input->post('fEstatus') !=  10) $where = '"p.iEstatus"=' . $this->input->post('fEstatus');
-		if ($this->input->post('fRol') > 0) $where['u.iIdRol']= $this->input->post('fRol');		
-		//echo "<script>alert('".$where['u.iIdRol']."');</script>";
+		//echo "<script>alert($this->listado_propuestas($where, $palabra, $pag);</script>";
 		//echo $_SESSION['consultap'];
+		
 		echo $this->listado_propuestas($where, $palabra, $pag);
+		
 	}
 
 	public function listado_propuestas($where = '', $palabra = '', $pag = 1)
