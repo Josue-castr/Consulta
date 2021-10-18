@@ -23,7 +23,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                     	<label>Sector</label>
-                                        <select name="fSector" id="fSector" class="form-control" onchange="CargarListado('temas', 'fSector', 'fTema');">
+                                        <select name="fSector" id="fSector" class="form-control" onchange="CargarListado('Temas', 'fSector', 'fTema');">
                                         	<?=$op_sectores; ?>
                                         </select>
                                     </div>
